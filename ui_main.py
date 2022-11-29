@@ -133,30 +133,43 @@ server_map_label = tk.Label(
 )
 server_map_label.grid(column=0, row=10, stick="nesw")
 
-# ============ SCROLL List ======================================
+# ============ Player List ======================================
 
-container = tk.Frame(root_main)
-canvas = tk.Canvas(container)
-scrollbar = tk.Scrollbar(container, orient="vertical", command=canvas.yview)
-scrollable_frame = tk.Frame(canvas)
+player_list_base = tk.Frame(
+    root_main, 
+    bg="green"
+    )
+player_list_canvas = tk.Canvas(
+    player_list_base,
+    bg="red",
+    borderwidth=0,
+    highlightthickness=0,
+    width=200,
+    height=5
+    )
 
-scrollable_frame.bind(
+player_list_scrollbar = tk.Scrollbar(
+    player_list_base,
+    orient="vertical",
+    command=player_list_canvas.yview
+    )
+
+player_list_scrollable_frame = tk.Frame(player_list_canvas)
+
+player_list_scrollable_frame.bind(
     "<Configure>",
-    lambda e: canvas.configure(
-        scrollregion=canvas.bbox("all")
+    lambda e: player_list_canvas.configure(
+        scrollregion=player_list_canvas.bbox("all")
     )
 )
 
-canvas.create_window((0, 0), window=scrollable_frame, anchor="nw")
+player_list_canvas.create_window((0, 0), window=player_list_scrollable_frame, anchor="nw")
 
-canvas.configure(yscrollcommand=scrollbar.set)
+player_list_canvas.configure(yscrollcommand=player_list_scrollbar.set)
 
-for i in range(50):
-    tk.Label(scrollable_frame, text="Sample scrolling label").pack()
-
-container.grid(column=3, row=1)
-canvas.pack(side="left", fill="both", expand=True)
-scrollbar.pack(side="right", fill="y")
+player_list_base.grid(column=1, row=2, rowspan=9, stick="nesw")
+player_list_canvas.pack(side="left", fill="both", expand=True)
+player_list_scrollbar.pack(side="right", fill="y")
 
 # ============ Player List ======================================
 
@@ -167,18 +180,6 @@ tk.Label(
     font=(font.medium, 16),
     bg=colour.bg_high
 ).grid(column=1, row=1, stick="nesw")
-
-players_frame = tk.Frame(
-    root_main,
-    bg=colour.bg_mid
-)
-
-players_frame.grid(
-    column=1,
-    row=2,
-    rowspan=100,
-    stick="nesw"
-)
 
 
 def add_player(player):
@@ -192,8 +193,8 @@ def add_player(player):
         img = ImageTk.PhotoImage(img)
 
     label = tk.Button(
-        players_frame,
-        text=" "+player.name+" ",
+        player_list_scrollable_frame,
+        text=" "+"123456789012345678901234567890123456789012"+" ",
         font=(font.medium, 12),
         relief="flat",
         bg=colour.btn,
