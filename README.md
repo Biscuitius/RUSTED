@@ -1,6 +1,6 @@
 # R.A.T.S
 #### Track player and server statistics on Rust by utilising APIs provided by Steam, Battlemetrics and RustMaps
-
+----
 ## Introduction
 A warm hello to you, friend. This is my first ever GitHub project - my first project ever uploaded to the internet, in fact.
 I'm using this project as a means to explore the programming world and learn new concepts - so constructive criticism is much appreciated :)
@@ -56,6 +56,6 @@ Now, looking up a player's Rust stats has always been available via API calls ma
 
 #### Well, allow me to make-up a completely hypothetical and self-gratifying story in which we manage to find an ideal raid target with the precise loot we want, and even identify where he lives - just by using RATS (yes, I chose that acronym on purpose). 
 
-Imagine this scenario: You're looking for a fun online raid target, you've got the explosives, but your team is demotivated and desperately in need of a big win. What's worse, your huge metal base hasn't got any upkeep left and nobody wants to farm for it. So, you open up RATS and check out the leaderboard. Sort by *Metal Ore Harvested* and filter to players with less hours than you (ez). A perfect candidate - let's call him Sal. Sal's stats sure do smell like free loot, but where does he live? You haven't seen him all wipe. So, you take a look at Sal's personal stats, and see that his *Time Spent Hot* is notably high, as are his *Food Eaten* and *Water Drunk* stats. His *Cloth Harvested* stat is unusually low this wipe, though. So, where on the map is very hot, with a lot of food and water, but no cloth? You take a look at the map, and behold - a hot desert where no cloth grows, but within, a river where food and water is plentiful. This must be where Sal lives.
+Imagine this scenario: You're looking for a fun online raid target, you've got the explosives, but your team is demotivated and desperately in need of a big win. What's worse, your huge metal base hasn't got any upkeep left and nobody wants to farm for it. So, you open up RATS and check out the leaderboard. Sort by *Metal Ore Harvested* and filter to players with less hours than you (ez). A perfect candidate - let's call him [Sal](shorturl.at/esyAL/). Now, farmer [Sal](shorturl.at/esyAL/)'s stats sure do smell like free loot, but where does he live? You haven't seen him all wipe. So, you take a look at [Sal](shorturl.at/esyAL/)'s personal stats, and see that his *Time Spent Hot* is notably high, as are his *Food Eaten* and *Water Drunk* stats. His *Cloth Harvested* stat is unusually low this wipe, though. So, where on the map is very hot, with a lot of food and water, but no cloth? You take a look at the map, and behold - a hot desert where no cloth grows, but within, a river where food and water is plentiful. This must be where [Sal](shorturl.at/esyAL/) lives.
 
-#### The obvious ending to that story is that Sal lived exactly right there, and he was indeed an ez online with endless metal overflowing from his boxes. Everything that once belonged to Sal is now yours, making him this wipe's biggest loser.
+#### The obvious ending to that story is that [Sal](shorturl.at/esyAL/) lived exactly right there, and he was indeed an ez online with endless metal overflowing from his boxes. Everything that once belonged to [Sal](shorturl.at/esyAL/) is now yours, making him this wipe's biggest loser.
