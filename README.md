@@ -1,4 +1,4 @@
-# R.A.T.S
+# R.A.T.S - Rust Advanced Tracking System
 #### Track player and server statistics on Rust by utilising APIs provided by Steam, Battlemetrics and RustMaps
 ----
 ## Introduction
@@ -25,7 +25,7 @@ Well, the app works by trawling through your Recent Players & Current Players li
 * Total Hours in Rust
 * Rust Stats (see below "Trackable Stats" for a full rundown)
 
-#### This information we MIGHT be able to gather, but will fail if there is more than one player on the server with the same username:
+#### This information we can always gather, but in some cases you'll have to manually find the player on BattleMetrics:
 * BattleMetrics ID
 * Previous Play Sessions
 * Average Online Timeframe
