@@ -54,7 +54,7 @@ Now, looking up a player's Rust stats has always been available via API calls ma
 
 ### What can I do with it?
 
-#### Well, allow me to make-up a completely hypothetical and self-gratifying story in which we manage to find an ideal raid target with the precise loot we want, and even identify where he lives - just by using RATS (yes, I chose that acronym on purpose). 
+#### Well, allow me to invent a completely hypothetical and self-gratifying story in which we manage to find an ideal raid target with the precise loot we want, and even identify where he lives - just by using RATS (yes, I chose that acronym on purpose). 
 
 Imagine this scenario: You're looking for a fun online raid target, you've got the explosives, but your team is demotivated and desperately in need of a big win. What's worse, your huge metal base hasn't got any upkeep left and nobody wants to farm for it. So, you open up RATS and check out the leaderboard. Sort by *Metal Ore Harvested* and filter to players with less hours than you (ez). A perfect candidate - let's call him [Sal](https://tinyurl.com/2e95md6d). Now, farmer [Sal](https://tinyurl.com/2e95md6d)'s stats sure do smell like free loot, but where does he live? You haven't seen him all wipe. So, you take a look at [Sal](https://tinyurl.com/2e95md6d)'s personal stats, and see that his *Time Spent Hot* is notably high, as are his *Food Eaten* and *Water Drunk* stats. His *Cloth Harvested* stat is unusually low this wipe, though. So, where on the map is very hot, with a lot of food and water, but no cloth? You take a look at the map, and behold - a hot desert where no cloth grows, but within, a river where food and water is plentiful. This must be where [Sal](https://tinyurl.com/2e95md6d) lives.
 
