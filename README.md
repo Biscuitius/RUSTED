@@ -1,5 +1,5 @@
 # R.A.T.S
-### Track player and server statistics on Rust by utilising APIs provided by Steam, Battlemetrics and RustMaps
+#### Track player and server statistics on Rust by utilising APIs provided by Steam, Battlemetrics and RustMaps
 
 ## Introduction
 A warm hello to you, friend. This is my first ever GitHub project - my first project ever uploaded to the internet, in fact.
@@ -12,7 +12,7 @@ The app is built in Python, using tkinter for the GUI and a mix of web scraping,
 So, enough about all that - what can the app actually do?
 Well, the app works by trawling through your Recent Players & Current Players list, reported by Steam based on whatever servers you have recently or are currently connected to. There's quite a lot of useful information that we can gather about a player, but we can track some players better than others. 
 
-### This information we can always gather:
+#### This information we can always gather:
 * Username
 * Username Changes
 * SteamID
@@ -20,21 +20,20 @@ Well, the app works by trawling through your Recent Players & Current Players li
 * Avatar
 * Profile Visibility
 
-### This information we can only gather if the user's Steam profile is set to public:
+#### This information we can only gather if the user's Steam profile is set to public:
 * Persona State (whether the user is currently online or offline)
 * Total Hours in Rust
 * Rust Stats (see below "Trackable Stats" for a full rundown)
 
-### This information we MIGHT be able to gather, but will fail if there is more than one player on the server with the same username:
+#### This information we MIGHT be able to gather, but will fail if there is more than one player on the server with the same username:
 * BattleMetrics ID
 * Previous Play Sessions
 * Average Online Timeframe
 
 
-## Trackable Stats
+### Trackable Stats
 Now, looking up a player's Rust stats has always been available via API calls made by discord bots and such, but what really makes RATS special is that we can track all these stats, filter them within a timeframe (e.g. since wipe day), put them in a leaderboard and update them regularly. This opens up an infinite number of possibilities and gameplay strategies that were previously impossible or based purely on guesswork.
 
-### Here's the stats we can track:
 | Resource Stats      | Base/Roleplay Stats     | PvP Stats
 |---------------------|-------------------------|--------
 | Metal Ore Harvested | Builds Placed           | Players Killed
@@ -52,7 +51,10 @@ Now, looking up a player's Rust stats has always been available via API calls ma
 |                     | Deaths by AI            | Picked up Other
 |                     | Deaths by Animals       | Suicides
 
-Now, imagine this scenario: You're looking for a fun online raid target, you've got the explosives, but your team is demotivated and desperately in need of a big win. What's worse, your huge metal base hasn't got any upkeep left and nobody wants to farm for it. So, you open up RATS and check out the leaderboard. Sort by Metal Ore Harvested and filter to players with less hours than you (ez). A perfect candidate - let's call him Sal. Sal's stats sure do smell like free loot, but where does he live? You haven't seen him all wipe. So, you take a look at Sal's personal stats, and see that his Time Spent Hot is notably high, as are his Food Eaten and Water Drunk stats. His Cloth Harvested stat is unusually low this wipe, though. So, where on the map is very hot, with a lot of food and water, but no cloth? You take a look at the map, and behold - a hot desert where no cloth grows, but within, a river where food and water is plentiful. This must be where Sal lives.
+
+### What can I do with it?
+
+Imagine this scenario: You're looking for a fun online raid target, you've got the explosives, but your team is demotivated and desperately in need of a big win. What's worse, your huge metal base hasn't got any upkeep left and nobody wants to farm for it. So, you open up RATS and check out the leaderboard. Sort by Metal Ore Harvested and filter to players with less hours than you (ez). A perfect candidate - let's call him Sal. Sal's stats sure do smell like free loot, but where does he live? You haven't seen him all wipe. So, you take a look at Sal's personal stats, and see that his Time Spent Hot is notably high, as are his Food Eaten and Water Drunk stats. His Cloth Harvested stat is unusually low this wipe, though. So, where on the map is very hot, with a lot of food and water, but no cloth? You take a look at the map, and behold - a hot desert where no cloth grows, but within, a river where food and water is plentiful. This must be where Sal lives.
 
 Now, in that made-up and self-gratifying story, we've managed to find an ideal raid target with the precise loot we want, and even identify where he lives - just by using RATS (yes, I chose that acronym on purpose). 
 
