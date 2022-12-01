@@ -12,7 +12,7 @@ root_main.title("RATS.EXE")
 root_main.config(bg=colour.bg_low, padx=10, pady=10)
 
 root_main.grid_columnconfigure(0, weight=1)
-root_main.grid_columnconfigure(1, weight=1)
+root_main.grid_columnconfigure(1, weight=2)
 
 root_main.grid_rowconfigure(1, weight=1)
 root_main.grid_rowconfigure(2, weight=1)
@@ -136,9 +136,9 @@ server_map_label.grid(column=0, row=10, stick="nesw")
 # ============ Player List ======================================
 
 player_list_base = tk.Frame(
-    root_main, 
+    root_main,
     bg="green"
-    )
+)
 player_list_canvas = tk.Canvas(
     player_list_base,
     bg="red",
@@ -146,13 +146,13 @@ player_list_canvas = tk.Canvas(
     highlightthickness=0,
     width=200,
     height=5
-    )
+)
 
 player_list_scrollbar = tk.Scrollbar(
     player_list_base,
     orient="vertical",
     command=player_list_canvas.yview
-    )
+)
 
 player_list_scrollable_frame = tk.Frame(player_list_canvas)
 
@@ -163,15 +163,15 @@ player_list_scrollable_frame.bind(
     )
 )
 
-player_list_canvas.create_window((0, 0), window=player_list_scrollable_frame, anchor="nw")
+player_list_canvas.create_window(
+    (0, 0), window=player_list_scrollable_frame, anchor="nw")
 
 player_list_canvas.configure(yscrollcommand=player_list_scrollbar.set)
 
 player_list_base.grid(column=1, row=2, rowspan=9, stick="nesw")
-player_list_canvas.pack(side="left", fill="both", expand=True)
-player_list_scrollbar.pack(side="right", fill="y")
+player_list_canvas.pack(side="left", fill="both", expand=False)
+player_list_scrollbar.pack(side="right", fill="y", expand=False)
 
-# ============ Player List ======================================
 
 tk.Label(
     root_main,
@@ -192,7 +192,7 @@ def add_player(player):
         img = Image.open("./icons/blank_small.jpg")
         img = ImageTk.PhotoImage(img)
 
-    label = tk.Button(
+    player_button = tk.Button(
         player_list_scrollable_frame,
         text=" "+"123456789012345678901234567890123456789012"+" ",
         font=(font.medium, 12),
@@ -205,8 +205,8 @@ def add_player(player):
         compound="left",
         command=lambda: ViewPlayer(player)
     )
-    label.pack(fill="both")
-    label.imgref = img
+    player_button.pack(side="top", fill="both", expand=True)
+    player_button.imgref = img
 
 
 def ViewPlayer(player):
