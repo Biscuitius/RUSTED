@@ -85,6 +85,8 @@ def scan_recent_players(user, session, steam_api_key):
         players = requests.get("http://api.steampowered.com/ISteamUser/GetPlayerSummaries/v0002/?key=" + steam_api_key +
                                "&steamids=" + ','. join(map(str, recent_players_id_list[old_counter:counter]))).json()["response"]["players"]
 
+        print(players)
+
         for profile in players:
             player_summaries.append(profile)
 

@@ -3,9 +3,7 @@ from ui_playerview import PlayerViewer
 from urllib.request import urlopen
 from PIL import Image, ImageTk
 from ui_styles import colour, font
-from examples import tyler, matt
-
-player_list = [tyler, matt]
+from examples import player_list
 
 root_main = tk.Tk()
 root_main.title("RATS.EXE")
@@ -202,7 +200,7 @@ def add_player(player):
 
     label = tk.Button(
         player_list_scrollable_frame,
-        text=" "+"123456789012345678901234567890123456789012"+" ",
+        text=" "+player.name+" ",
         font=(font.medium, 12),
         relief="flat",
         bg=colour.btn,
@@ -221,7 +219,7 @@ def ViewPlayer(player):
     PlayerViewer(player)
 
 
-add_player(matt)
-add_player(tyler)
+for player in player_list:
+    add_player(player)
 
 root_main.mainloop()

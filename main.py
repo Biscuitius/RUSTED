@@ -1,12 +1,12 @@
 import sqlite3
-from examples import tyler, matt
+# from examples import tyler, matt
 
 from web import login
 from web import scan_recent_players
 from battlemetrics import search_for_player
 from datetime import datetime
 
-example_player = matt.steamid
+# example_player = matt.steamid
 example_server = "Rusty Moose |EU Small|"
 
 steam_api_key = "***REMOVED***"
