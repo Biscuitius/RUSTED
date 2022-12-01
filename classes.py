@@ -249,15 +249,3 @@ class Player:
                     + int(raw_stats["death_bear"]))
             except KeyError:
                 self.stats["Deaths by Animals"] = "0"
-
-    def print_info(self):
-        print(
-            f'''
-            Name: {self.name}
-            ID: {self.id}
-            URL: {self.url}
-            Avatar (Large): {self.avatarbig}
-            Avatar (Medium): {self.avatarmedium}
-            Avatar (Small): {self.avatarsmall}
-            Visibility: {self.visibility}
-            Online State: {self.onlinestate}''')

@@ -1,12 +1,12 @@
 import sqlite3
-from examples import ***REMOVED***, ***REMOVED***
+# from examples import ***REMOVED***, ***REMOVED***
 
 from web import login
 from web import scan_recent_players
 from battlemetrics import search_for_player
 from datetime import datetime
 
-example_player = ***REMOVED***.steamid
+# example_player = ***REMOVED***.steamid
 example_server = "***REMOVED***"
 
 steam_api_key = "***REMOVED***"
