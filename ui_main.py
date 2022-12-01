@@ -10,6 +10,7 @@ player_list = [tyler, matt]
 root_main = tk.Tk()
 root_main.title("RATS.EXE")
 root_main.config(bg=colour.bg_low, padx=10, pady=10)
+root_main.resizable(False, False)
 
 root_main.grid_columnconfigure(0, weight=1)
 root_main.grid_columnconfigure(1, weight=2)
@@ -141,11 +142,11 @@ player_list_base = tk.Frame(
 )
 player_list_canvas = tk.Canvas(
     player_list_base,
-    bg="red",
+    bg=colour.bg_low,
     borderwidth=0,
     highlightthickness=0,
-    width=200,
-    height=5
+    width=1,
+    height=1
 )
 
 player_list_scrollbar = tk.Scrollbar(
@@ -159,7 +160,8 @@ player_list_scrollable_frame = tk.Frame(player_list_canvas)
 player_list_scrollable_frame.bind(
     "<Configure>",
     lambda e: player_list_canvas.configure(
-        scrollregion=player_list_canvas.bbox("all")
+        scrollregion=player_list_canvas.bbox("all"),
+        width=player_list_scrollable_frame.winfo_width()
     )
 )
 
@@ -168,10 +170,16 @@ player_list_canvas.create_window(
 
 player_list_canvas.configure(yscrollcommand=player_list_scrollbar.set)
 
-player_list_base.grid(column=1, row=2, rowspan=9, stick="nesw")
-player_list_canvas.pack(side="left", fill="both", expand=False)
-player_list_scrollbar.pack(side="right", fill="y", expand=False)
+player_list_canvas.bind(
+    "<Configure>",
+    lambda e: player_list_scrollable_frame.configure(
+        width=player_list_canvas.winfo_width()
+    )
+)
 
+player_list_base.grid(column=1, row=2, rowspan=9, stick="nesw")
+player_list_canvas.pack(side="left", fill="both", expand=True)
+player_list_scrollbar.pack(side="right", fill="y", expand=False)
 
 tk.Label(
     root_main,
@@ -192,7 +200,7 @@ def add_player(player):
         img = Image.open("./icons/blank_small.jpg")
         img = ImageTk.PhotoImage(img)
 
-    player_button = tk.Button(
+    label = tk.Button(
         player_list_scrollable_frame,
         text=" "+"123456789012345678901234567890123456789012"+" ",
         font=(font.medium, 12),
@@ -205,8 +213,8 @@ def add_player(player):
         compound="left",
         command=lambda: ViewPlayer(player)
     )
-    player_button.pack(side="top", fill="both", expand=True)
-    player_button.imgref = img
+    label.pack(fill="both")
+    label.imgref = img
 
 
 def ViewPlayer(player):

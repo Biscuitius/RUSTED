@@ -198,7 +198,7 @@ class PlayerViewer:
             bg=colour.bg_mid,
             exportselection=0,
             wrap="word",
-            width=1
+            width=24
         )
         notes_box.grid(column=1, row=2, rowspan=100, stick="nesw")
 
