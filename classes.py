@@ -10,13 +10,8 @@ class Player:
         self.avatarmedium = data["avatarmedium"]
         self.avatarsmall = data["avatar"]
         self.name = data["personaname"]
-        self.visibility = data["communityvisibilitystate"]
         self.onlinestate = data["personastate"]
         self.stats = {}
-        if data["gameserverip"]:
-            self.currentserver = data["gameserverip"]
-        else:
-            self.currentserver = None
 
     def update_info(self, steam_api_key):
 
@@ -24,22 +19,26 @@ class Player:
             "http://api.steampowered.com/ISteamUser/GetPlayerSummaries/v0002/?key="
             + steam_api_key
             + "&steamids=" + self.steamid).json()["response"]["players"]
-        self.avatarbig = data["avatarfull"]
-        self.avatarmedium = data["avatarmedium"]
-        self.avatarsmall = data["avatar"]
-        self.name = data["personaname"]
-        self.visibility = data["communityvisibilitystate"]
-        self.onlinestate = data["personastate"]
-        if data["gameserverip"]:
-            self.currentserver = data["gameserverip"]
+
+        if data["communityvisibilitystate"] != 3:
+            self.destroy()
         else:
-            self.currentserver = None
+            self.avatarbig = data["avatarfull"]
+            self.avatarmedium = data["avatarmedium"]
+            self.avatarsmall = data["avatar"]
+            self.name = data["personaname"]
+            self.onlinestate = data["personastate"]
 
     def update_stats(self, steam_api_key):
 
         stats_response = requests.get(
-            f"http://api.steampowered.com/ISteamUserStats/GetUserStatsForGame/v0002/?appid=252490&key={steam_api_key}&steamid={self.steamid}")
+            "http://api.steampowered.com/ISteamUserStats/GetUserStatsForGame/v0002/?appid=252490&key="
+            + steam_api_key
+            + "&steamid="
+            + self.steamid)
+
         raw_stats = {}
+        print(stats_response.json())
 
         if stats_response:
 
