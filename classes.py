@@ -15,10 +15,10 @@ class Player:
         self.bmid = None
         self.stats = {}
 
-    def update_stats(self, app_id, steam_api_key):
+    def update_stats(self, steam_api_key):
 
         stats_response = requests.get(
-            f"http://api.steampowered.com/ISteamUserStats/GetUserStatsForGame/v0002/?appid={app_id}&key={steam_api_key}&steamid={self.id}")
+            f"http://api.steampowered.com/ISteamUserStats/GetUserStatsForGame/v0002/?appid=252490&key={steam_api_key}&steamid={self.id}")
         raw_stats = {}
 
         if stats_response:
@@ -187,9 +187,9 @@ class Player:
                 self.stats["Time Spent on Roads"] = "0"
 
             try:
-                self.stats["Distance Ridden on Horses (km)"] = raw_stats["horse_distance_ridden_km"]
+                self.stats["Distance on Horses"] = raw_stats["horse_distance_ridden_km"]
             except KeyError:
-                self.stats["Distance Ridden on Horses (km)"] = "0"
+                self.stats["Distance on Horses"] = "0"
 
             try:
                 self.stats["Blueprints Learnt"] = raw_stats["blueprint_studied"]
@@ -212,16 +212,16 @@ class Player:
                 self.stats["Water Drunk"] = "0"
 
             try:
-                self.stats["Time Spent Speaking (sec)"] = raw_stats["seconds_speaking"]
+                self.stats["Time Speaking (s)"] = raw_stats["seconds_speaking"]
             except KeyError:
-                self.stats["Time Spent Speaking (sec)"] = "0"
+                self.stats["Time Speaking (s)"] = "0"
 
             try:
-                self.stats["Instrument Notes Played"] = str(
+                self.stats["Notes Played"] = str(
                     + int(raw_stats["InstrumentNotesPlayed"])
                     + int(raw_stats["InstrumentNotesPlayedBinds"]))
             except KeyError:
-                self.stats["Instrument Notes Played"] = "0"
+                self.stats["Notes Played"] = "0"
 
             try:
                 self.stats["Scientists Killed"] = raw_stats["kill_scientist"]

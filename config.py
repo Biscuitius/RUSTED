@@ -1,0 +1,6 @@
+server = "[EU] Facepunch Small 3"
+server_ip = "51.210.222.219:28020"
+server_bmid = "11410198"
+steam_api_key = "***REMOVED***"
+username = "***REMOVED***"
+password = "***REMOVED***"
