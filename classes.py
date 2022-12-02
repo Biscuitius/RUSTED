@@ -1,10 +1,32 @@
 import requests
 
 
+class Server:
+
+    def __init__(self, server_bmid):
+
+        data = requests.get(
+            url="https://api.battlemetrics.com/servers/"
+            + server_bmid).json()
+
+        self.name = data["data"]["attributes"]["name"],
+        self.ip = str(data["data"]["attributes"]["address"]),
+        self.port = str(data["data"]["attributes"]["port"]),
+        self.max = str(data["data"]["attributes"]["maxPlayers"]),
+        self.queue = str(data["data"]["attributes"]
+                         ["details"]["rust_queued_players"]),
+        self.map_size = str(data["data"]["attributes"]
+                            ["details"]["rust_world_size"]),
+        self.map_seed = str(data["data"]["attributes"]
+                            ["details"]["rust_world_seed"]),
+        self.steamid = str(data["data"]["attributes"]
+                           ["details"]["serverSteamId"])
+
+
 class Player:
 
     def __init__(self, data):
-        self.id = data["steamid"]
+        self.steamid = data["steamid"]
         self.url = data["profileurl"]
         self.avatarbig = data["avatarfull"]
         self.avatarmedium = data["avatarmedium"]
@@ -12,13 +34,33 @@ class Player:
         self.name = data["personaname"]
         self.visibility = data["communityvisibilitystate"]
         self.onlinestate = data["personastate"]
-        self.bmid = None
         self.stats = {}
+        if data["gameserverip"]:
+            self.currentserver = data["gameserverip"]
+        else:
+            self.currentserver = None
+
+    def update_info(self, steam_api_key):
+
+        data = requests.get(
+            "http://api.steampowered.com/ISteamUser/GetPlayerSummaries/v0002/?key="
+            + steam_api_key
+            + "&steamids=" + self.steamid).json()["response"]["players"]
+        self.avatarbig = data["avatarfull"]
+        self.avatarmedium = data["avatarmedium"]
+        self.avatarsmall = data["avatar"]
+        self.name = data["personaname"]
+        self.visibility = data["communityvisibilitystate"]
+        self.onlinestate = data["personastate"]
+        if data["gameserverip"]:
+            self.currentserver = data["gameserverip"]
+        else:
+            self.currentserver = None
 
     def update_stats(self, steam_api_key):
 
         stats_response = requests.get(
-            f"http://api.steampowered.com/ISteamUserStats/GetUserStatsForGame/v0002/?appid=252490&key={steam_api_key}&steamid={self.id}")
+            f"http://api.steampowered.com/ISteamUserStats/GetUserStatsForGame/v0002/?appid=252490&key={steam_api_key}&steamid={self.steamid}")
         raw_stats = {}
 
         if stats_response:
