@@ -1,28 +1,6 @@
 import requests
 
 
-class Server:
-
-    def __init__(self, server_bmid):
-
-        data = requests.get(
-            url="https://api.battlemetrics.com/servers/"
-            + server_bmid).json()
-
-        self.name = data["data"]["attributes"]["name"],
-        self.ip = str(data["data"]["attributes"]["address"]),
-        self.port = str(data["data"]["attributes"]["port"]),
-        self.max = str(data["data"]["attributes"]["maxPlayers"]),
-        self.queue = str(data["data"]["attributes"]
-                         ["details"]["rust_queued_players"]),
-        self.map_size = str(data["data"]["attributes"]
-                            ["details"]["rust_world_size"]),
-        self.map_seed = str(data["data"]["attributes"]
-                            ["details"]["rust_world_seed"]),
-        self.steamid = str(data["data"]["attributes"]
-                           ["details"]["serverSteamId"])
-
-
 class Player:
 
     def __init__(self, data):

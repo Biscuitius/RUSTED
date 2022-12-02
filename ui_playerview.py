@@ -49,7 +49,7 @@ class PlayerViewer:
         player_title.grid(
             column=0,
             row=0,
-            columnspan=5,
+            columnspan=4,
             stick="nesw",
         )
 
@@ -161,26 +161,6 @@ class PlayerViewer:
             )
             hours_label.grid(column=0, row=10, stick="nesw")
 
-            if player.bmid:
-                tk.Label(
-                    self.root,
-                    text="BatMet ID",
-                    fg=colour.txt_title,
-                    font=(font.medium, 16),
-                    bg=colour.bg_high,
-                    height=1
-                ).grid(column=0, row=11, stick="nesw")
-
-                hours_label = tk.Label(
-                    self.root,
-                    text=player.bmid,
-                    fg=colour.txt_title,
-                    font=(font.medium, 12),
-                    bg=colour.bg_mid,
-                    height=1
-                )
-                hours_label.grid(column=0, row=12, stick="nesw")
-
 # ============ Player Notes =====================================
 
         tk.Label(
@@ -202,16 +182,6 @@ class PlayerViewer:
         )
         notes_box.grid(column=1, row=2, rowspan=100, stick="nesw")
 
-# ============ Player Session Info ==============================
-
-        tk.Label(
-            self.root,
-            text="Player Sessions",
-            fg=colour.txt_title,
-            font=(font.medium, 16),
-            bg=colour.bg_high
-        ).grid(column=2, row=1, stick="nesw")
-
 # ============ Player Stats =====================================
 
         tk.Label(
@@ -220,13 +190,13 @@ class PlayerViewer:
             fg=colour.txt_title,
             font=(font.medium, 16),
             bg=colour.bg_high
-        ).grid(column=3, row=1, columnspan=2, stick="nesw")
+        ).grid(column=2, row=1, columnspan=2, stick="nesw")
 
         stats_scrollbar = tk.Scrollbar(
             self.root,
             orient="vertical"
         )
-        stats_scrollbar.grid(column=4, row=2, rowspan=11, stick="ns")
+        stats_scrollbar.grid(column=3, row=2, rowspan=11, stick="ns")
 
         stats_box = tk.Text(
             self.root,
@@ -236,7 +206,7 @@ class PlayerViewer:
             font=(font.medium, 14),
             width=22
         )
-        stats_box.grid(column=3, row=2, rowspan=100, stick="nesw")
+        stats_box.grid(column=2, row=2, rowspan=100, stick="nesw")
 
         stats_scrollbar.config(command=stats_box.yview)
 
