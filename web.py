@@ -45,7 +45,8 @@ def scan_recent_players(user, session, steam_api_key):
                 url_counter += 1
                 url_list.append(url[30:])
 
-    print(f"Found {counter} players, of which {id_counter} are raw IDs and {url_counter} are URLS that must be converted")
+    print(
+        f"Found {id_counter} raw IDs and {url_counter} vanity URLs.\nNow Converting URLs to SteamIDs...")
 
     def get_tasks(url_list, session, steam_api_key):
         tasks = []
@@ -69,7 +70,7 @@ def scan_recent_players(user, session, steam_api_key):
     for response in resolve_url_responses:
         recent_players_id_list.append(response["response"]["steamid"])
 
-    print(f"{len(recent_players_id_list)} total profiles available")
+    print("Scanning player profiles...")
 
     player_summaries = []
     old_counter = 0
@@ -93,9 +94,14 @@ def scan_recent_players(user, session, steam_api_key):
 
     for profile in players:
 
-        player_summaries.append(profile)
+        if profile["communityvisibilitystate"] == 3:
+            player_summaries.append(profile)
 
-    print(f"{len(player_summaries)} profiles successfully processed")
+    print("Out of {len(recent_players_id_list)} profiles, "
+          + (len(recent_players_id_list) - len(player_summaries))
+          + " are private and "
+          + len(player_summaries)
+          + " are public.")
 
     for profile in player_summaries:
 

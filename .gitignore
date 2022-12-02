@@ -155,3 +155,4 @@ cython_debug/
 test.py
 Database.db
 Database.db
+database
