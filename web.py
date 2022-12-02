@@ -1,14 +1,9 @@
 import requests
 import asyncio
 import aiohttp
-import time
 from classes import Player
 from bs4 import BeautifulSoup
 from steam import webauth
-from datetime import datetime, timezone, timedelta
-
-Personal_Key = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbiI6ImYxMTMxMDMwMDRhOTM4ZTMiLCJpYXQiOjE2NjcyNDA0MjcsIm5iZiI6MTY2NzI0MDQyNywiaXNzIjoiaHR0cHM6Ly93d3cuYmF0dGxlbWV0cmljcy5jb20iLCJzdWIiOiJ1cm46dXNlcjoxOTc1NzUifQ.dWNwz8_egTs9xUY0coVtRLYdQQSL-wMycd2mYmKC1Zc"
-Headers = {"Authorization": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbiI6ImYxMTMxMDMwMDRhOTM4ZTMiLCJpYXQiOjE2NjcyNDA0MjcsIm5iZiI6MTY2NzI0MDQyNywiaXNzIjoiaHR0cHM6Ly93d3cuYmF0dGxlbWV0cmljcy5jb20iLCJzdWIiOiJ1cm46dXNlcjoxOTc1NzUifQ.dWNwz8_egTs9xUY0coVtRLYdQQSL-wMycd2mYmKC1Zc"}
 
 
 def login(username, password):
@@ -107,23 +102,3 @@ def scan_recent_players(user, session, steam_api_key):
         recent_players[profile["steamid"]] = Player(profile)
 
     return recent_players
-
-
-def get_server_info(server_bmid):
-
-    server_data = requests.get(
-        url=f"https://api.battlemetrics.com/servers/{server_bmid}?include=player,identifier", headers=headers)
-
-    server_info = {
-        "Name": server_data.json()["data"]["attributes"]["name"],
-        "IP": str(server_data.json()["data"]["attributes"]["address"]),
-        "Port": str(server_data.json()["data"]["attributes"]["port"]),
-        "Players": server_data.json()["data"]["attributes"]["players"],
-        "Max": server_data.json()["data"]["attributes"]["maxPlayers"],
-        "Queue": server_data.json()["data"]["attributes"]["details"]["rust_queued_players"],
-        "Map Size": server_data.json()["data"]["attributes"]["details"]["rust_world_size"],
-        "Map Seed": server_data.json()["data"]["attributes"]["details"]["rust_world_seed"],
-        "Steam ID": server_data.json()["data"]["attributes"]["details"]["serverSteamId"],
-    }
-
-    return server_info
