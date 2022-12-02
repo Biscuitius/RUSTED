@@ -9,7 +9,8 @@ headers = {"Authorization": "***REMOVED***"}
 
 def get_server_info(server_name):
 
-    server_data = requests.get(url = f"https://api.battlemetrics.com/servers/{server_name}?include=player,identifier", headers = headers)
+    server_data = requests.get(
+        url=f"https://api.battlemetrics.com/servers/{server_name}?include=player,identifier", headers=headers)
 
     server_info = {
         "Name": server_data.json()["data"]["attributes"]["name"],
@@ -24,20 +25,21 @@ def get_server_info(server_name):
     }
 
     server_players = {}
-    
+
     for player in server_data.json()["included"]:
         if player["type"] == "player":
             server_players[player["id"]] = player["attributes"]["name"]
         elif player["type"] == "identifier":
-            server_players[player["relationships"]["player"]["data"]["id"]] = player["attributes"]["identifier"]
+            server_players[player["relationships"]["player"]
+                           ["data"]["id"]] = player["attributes"]["identifier"]
 
     return server_info, server_players
 
 
 def search_for_player(player_name, server_name):
     search = requests.get(
-    url=f"https://api.battlemetrics.com/players?filter%5Bsearch%5D=%22{player_name}%22&filter%5BplayerFlags%5D=&filter%5Bserver%5D%5Bsearch%5D=%22{server_name}%22&filter%5Bserver%5D%5Bgame%5D=rust&sort=-lastSeen",
-    headers=headers
+        url=f"https://api.battlemetrics.com/players?filter%5Bsearch%5D=%22{player_name}%22&filter%5BplayerFlags%5D=&filter%5Bserver%5D%5Bsearch%5D=%22{server_name}%22&filter%5Bserver%5D%5Bgame%5D=rust&sort=-lastSeen",
+        headers=headers
     ).json()
     try:
         if len(search["data"]) == 0:
@@ -46,7 +48,8 @@ def search_for_player(player_name, server_name):
             match_list = {}
             for bm_profile in search["data"]:
                 if bm_profile['attributes']['name'] == player_name:
-                    match_list[bm_profile["id"]] = bm_profile["attributes"]["name"]
+                    match_list[bm_profile["id"]
+                               ] = bm_profile["attributes"]["name"]
             if len(match_list) == 1:
                 player_bmid = list(match_list.keys())[0]
                 return player_bmid
@@ -56,6 +59,7 @@ def search_for_player(player_name, server_name):
                     print(f"{match} - {match_list[match]}")
         else:
             player_bmid = search["data"][0]["id"]
+            print(f"BMID of {player_name} is {player_bmid}")
             return player_bmid
     except:
         print(search)
@@ -63,7 +67,8 @@ def search_for_player(player_name, server_name):
 
 def get_player_info(player_bmid, server_id):
 
-    player_data = requests.get(url=f"https://api.battlemetrics.com/players/{player_bmid}/relationships/sessions", headers = headers)
+    player_data = requests.get(
+        url=f"https://api.battlemetrics.com/players/{player_bmid}/relationships/sessions", headers=headers)
     found_username = False
     player_info = {"Sessions": [], "Online": False}
     previous_session_end = None
@@ -77,13 +82,14 @@ def get_player_info(player_bmid, server_id):
                 found_username = True
             if session["attributes"]["stop"] is None:
                 if previous_session_end is None:
-                    player_info["Sessions"].insert(0,{
+                    player_info["Sessions"].insert(0, {
                         "Start": datetime.fromisoformat(session["attributes"]["start"][:19]) + timedelta(hours=time.localtime().tm_isdst),
                         "Stop": "Now"
 
                     })
                 else:
-                    time_since_last_session = (datetime.fromisoformat(session["attributes"]["start"][:19]) + timedelta(hours=time.localtime().tm_isdst)) - previous_session_end
+                    time_since_last_session = (datetime.fromisoformat(
+                        session["attributes"]["start"][:19]) + timedelta(hours=time.localtime().tm_isdst)) - previous_session_end
                     if time_since_last_session < timedelta(hours=1):
                         player_info["Sessions"][0]["Stop"] = "Now"
                     else:
@@ -102,9 +108,11 @@ def get_player_info(player_bmid, server_id):
                 })
                 previous_session_end = player_info["Sessions"][0]["Stop"]
             else:
-                time_since_last_session = (datetime.fromisoformat(session["attributes"]["start"][:19]) + timedelta(hours = time.localtime().tm_isdst)) - previous_session_end
-                if time_since_last_session < timedelta(hours = 1):
-                    player_info["Sessions"][0]["Stop"] = (datetime.fromisoformat(session["attributes"]["stop"][:19]))
+                time_since_last_session = (datetime.fromisoformat(
+                    session["attributes"]["start"][:19]) + timedelta(hours=time.localtime().tm_isdst)) - previous_session_end
+                if time_since_last_session < timedelta(hours=1):
+                    player_info["Sessions"][0]["Stop"] = (
+                        datetime.fromisoformat(session["attributes"]["stop"][:19]))
                 else:
                     player_info["Sessions"].insert(0, {
                         "Start": datetime.fromisoformat(session["attributes"]["start"][:19]) + timedelta(hours=time.localtime().tm_isdst),
