@@ -5,9 +5,9 @@ def init_database():
 
     db = sqlite3.connect("Database.db")
     cur = db.cursor()
-
-    try:
-        cur.execute("""CREATE TABLE Stats(
+    cur.execute("""
+        CREATE TABLE IF NOT EXISTS 
+        Stats(
             "Steam ID" char(17) PRIMARY KEY,
             "Name" varchar(32),
             "Profile URL" varchar(120),
@@ -53,25 +53,25 @@ def init_database():
             "Helipad Landings" varchar(15),
             "Cargo Bridge Visits" varchar(15),
             "Deaths by Animals" varchar(15)
-            )""")
-    except:
-        pass
+        )""")
 
     return db, cur
 
 
 def update_player_stats(players):
 
-    db_raw = init_database("Database.db")
+    db_raw = init_database()
     db = db_raw[0]
     cur = db_raw[1]
 
     for player in players:
 
+        print(player)
+        
         cur.execute(
-            "INSERT OR UPDATE Stats (:steamid, :name, :url, :avatarbig, :avatarmedium, :avatarsmall, :metal_ore_harvested, :stone_harvested, :wood_harvested, :scrap_acquired, :cloth_harvested, :lowgrade_acquired, :leather_harvested, :barrels_broken, :animals_killed, :players_killed, :headshots_hit, :bullets_fired, :bullets_hit, :deaths, :rockets_fired, :grenades_thrown, :arrows_shot, :arrows_hit, :shotguns_fired, :wounded, :been_picked_up, :picked_up_other, :suicides, :builds_placed, :builds_upgraded, :time_spent_cold, :time_spent_hot, :time_spent_on_roads, :distance_ridden_on_horses, :blueprints_learnt, :times_waved, :food_eaten, :water_drunk, :time_spent_speaking, :instrument_notes_played, :scientists_killed, :deaths_by_ai, :helipad_landings, :cargo_bridge_visits, :deaths_by_animals)",
+            "INSERT INTO Stats(:steamid, :name, :url, :avatarbig, :avatarmedium, :avatarsmall, :metal_ore_harvested, :stone_harvested, :wood_harvested, :scrap_acquired, :cloth_harvested, :lowgrade_acquired, :leather_harvested, :barrels_broken, :animals_killed, :players_killed, :headshots_hit, :bullets_fired, :bullets_hit, :deaths, :rockets_fired, :grenades_thrown, :arrows_shot, :arrows_hit, :shotguns_fired, :wounded, :been_picked_up, :picked_up_other, :suicides, :builds_placed, :builds_upgraded, :time_spent_cold, :time_spent_hot, :time_spent_on_roads, :distance_ridden_on_horses, :blueprints_learnt, :times_waved, :food_eaten, :water_drunk, :time_spent_speaking, :instrument_notes_played, :scientists_killed, :deaths_by_ai, :helipad_landings, :cargo_bridge_visits, :deaths_by_animals)",
             {
-                "steamid": players[player].id,
+                "steamid": players[player].steamid,
                 "name": players[player].name,
                 "url": players[player].name,
                 "avatarbig": players[player].avatarbig,

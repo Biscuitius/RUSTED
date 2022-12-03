@@ -38,7 +38,6 @@ class Player:
             + self.steamid)
 
         raw_stats = {}
-        print(stats_response.json())
 
         if stats_response:
 
