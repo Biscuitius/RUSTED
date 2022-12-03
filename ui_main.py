@@ -3,7 +3,6 @@ from ui_playerview import PlayerViewer
 from urllib.request import urlopen
 from PIL import Image, ImageTk
 from ui_styles import colour, font
-from examples import player_list
 
 root_main = tk.Tk()
 root_main.title("RATS.EXE")
