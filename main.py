@@ -21,7 +21,7 @@ def update_player_stats(players, steam_api_key):
 
     for player in players:
         players[player].update_stats(steam_api_key)
-    db.update_player_stats(players)
+    db.update_all_players(players)
 
     print(
         "Finished updating player stats\n (took "
