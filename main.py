@@ -18,11 +18,16 @@ def update_player_stats(players, steam_api_key):
 
     print("Updating player stats...")
     start_time = datetime.now()
+
     for player in players:
         players[player].update_stats(steam_api_key)
     db.update_player_stats(players)
-    time_taken = datetime.now() - start_time
-    print(f"Finished updating player stats\n (took {time_taken})")
+
+    print(
+        "Finished updating player stats\n (took "
+        + str((datetime.now() - start_time)) + ")"
+    )
+
     return players
 
 

@@ -190,19 +190,19 @@ class Player:
                 self.stats["Builds Upgraded"] = "0"
 
             try:
-                self.stats["Time Spent Cold"] = raw_stats["cold_exposure_duration"]
+                self.stats["Time Cold"] = raw_stats["cold_exposure_duration"]
             except KeyError:
-                self.stats["Time Spent Cold"] = "0"
+                self.stats["Time Cold"] = "0"
 
             try:
-                self.stats["Time Spent Hot"] = raw_stats["hot_exposure_duration"]
+                self.stats["Time Hot"] = raw_stats["hot_exposure_duration"]
             except KeyError:
-                self.stats["Time Spent Hot"] = "0"
+                self.stats["Time Hot"] = "0"
 
             try:
-                self.stats["Time Spent on Roads"] = raw_stats["topology_road_duration"]
+                self.stats["Time on Roads"] = raw_stats["topology_road_duration"]
             except KeyError:
-                self.stats["Time Spent on Roads"] = "0"
+                self.stats["Time on Roads"] = "0"
 
             try:
                 self.stats["Distance on Horses"] = raw_stats["horse_distance_ridden_km"]
