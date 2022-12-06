@@ -14,9 +14,6 @@ def init_database():
         Stats(
             "Steam ID" char(17) PRIMARY KEY,
             "Name" varchar(32),
-            "Avatar (184x184)" varchar(120),
-            "Avatar (64x64)" varchar(120),
-            "Avatar (32x32)" varchar(120),
             "Metal Ore Harvested" varchar(15),
             "Stone Harvested" varchar(15),
             "Wood Harvested" varchar(15),
@@ -56,7 +53,12 @@ def init_database():
             "Deaths by AI" varchar(15),
             "Helipad Landings" varchar(15),
             "Cargo Bridge Visits" varchar(15),
-            "Deaths by Animals" varchar(15)
+            "Deaths by Animals" varchar(15),
+            "Avatar (32x32)" varchar(120),
+            "Avatar (64x64)" varchar(120),
+            "Avatar (184x184)" varchar(120)
+
+
         )""")
 
     db.commit()
@@ -91,9 +93,6 @@ def update_players(players):
                 (
                     player.steamid,
                     player.name,
-                    player.avatarbig,
-                    player.avatarmedium,
-                    player.avatarsmall,
                     player.stats["Metal Ore Harvested"],
                     player.stats["Stone Harvested"],
                     player.stats["Wood Harvested"],
@@ -133,16 +132,16 @@ def update_players(players):
                     player.stats["Deaths by AI"],
                     player.stats["Helipad Landings"],
                     player.stats["Cargo Bridge Visits"],
-                    player.stats["Deaths by Animals"]
+                    player.stats["Deaths by Animals"],
+                    player.avatarmedium,
+                    player.avatarsmall,
+                    player.avatarbig
                 )
             )
         else:
             print(
                 "\n\n\nSomething went wrong with player "
                 + player.name
-                + ":\n"
-                + str(type(player.stats))
-                + "\n\n\n"
             )
 
     db.commit()
