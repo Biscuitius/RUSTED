@@ -5,13 +5,11 @@ class Player:
 
     def __init__(self, data):
         self.steamid = data["steamid"]
-        self.url = data["profileurl"]
+        self.url = "https://steamcommunity.com/profiles/" + self.steamid
         self.avatarbig = data["avatarfull"]
         self.avatarmedium = data["avatarmedium"]
         self.avatarsmall = data["avatar"]
         self.name = data["personaname"]
-        self.onlinestate = data["personastate"]
-        self.stats = {}
 
     def update_info(self, steam_api_key):
 
@@ -20,14 +18,18 @@ class Player:
             + steam_api_key
             + "&steamids=" + self.steamid).json()["response"]["players"]
 
+        player_pop_list = []
+
         if data["communityvisibilitystate"] != 3:
-            self.destroy()
+            player_pop_list.append(self.steamid)
+
         else:
             self.avatarbig = data["avatarfull"]
             self.avatarmedium = data["avatarmedium"]
             self.avatarsmall = data["avatar"]
             self.name = data["personaname"]
-            self.onlinestate = data["personastate"]
+
+        return player_pop_list
 
     def update_stats(self, steam_api_key):
 
@@ -38,8 +40,9 @@ class Player:
             + self.steamid)
 
         raw_stats = {}
+        player_pop_list = []
 
-        if stats_response:
+        if stats_response and "playerstats" in stats_response.json():
 
             for stat in stats_response.json()["playerstats"]["stats"]:
                 raw_stats[stat["name"]] = stat["value"]
@@ -267,3 +270,8 @@ class Player:
                     + int(raw_stats["death_bear"]))
             except KeyError:
                 self.stats["Deaths by Animals"] = "0"
+
+        else:
+            player_pop_list.append(self.steamid)
+
+        return player_pop_list
