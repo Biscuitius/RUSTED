@@ -10,7 +10,7 @@ def login(username, password):
     print("Logging in...")
     user = webauth.WebAuth(username)
     session = user.cli_login(password)
-    print("Successfully logged in\n")
+    print("\nSuccessfully logged in.\n")
     return user, session
 
 
@@ -46,14 +46,27 @@ def scan_recent_players(user, session, steam_api_key):
                 url_list.append(url[30:])
 
     print(
-        f"Found {id_counter} raw IDs and {url_counter} vanity URLs.\nNow Converting URLs to SteamIDs...")
+        "Found "
+        + str(id_counter)
+        + " raw IDs and "
+        + str(url_counter)
+        + " vanity URLs.\n")
+
+    print("Converting URLs to SteamIDs...")
 
     def get_tasks(url_list, session, steam_api_key):
+
         tasks = []
+
         for URL in url_list:
             tasks.append(asyncio.create_task(session.get(
                 "http://api.steampowered.com/ISteamUser/ResolveVanityURL/v0001/?key=" + steam_api_key + "&vanityurl=" + URL)))
-        print(f"Converted {len(url_list)} URLs to SteamIDs")
+
+        print(
+            "Converted "
+            + str(len(url_list))
+            + " URLs to SteamIDs.\n")
+
         return tasks
 
     resolve_url_responses = []
@@ -81,10 +94,9 @@ def scan_recent_players(user, session, steam_api_key):
         players = requests.get("http://api.steampowered.com/ISteamUser/GetPlayerSummaries/v0002/?key=" + steam_api_key +
                                "&steamids=" + ','. join(map(str, recent_players_id_list[old_counter:counter]))).json()["response"]["players"]
 
-        print(players)
-
         for profile in players:
-            player_summaries.append(profile)
+            if profile["communityvisibilitystate"] == 3:
+                player_summaries.append(profile)
 
         counter += 100
         old_counter += 100
@@ -93,15 +105,19 @@ def scan_recent_players(user, session, steam_api_key):
                            "&steamids=" + ','. join(map(str, recent_players_id_list[old_counter:counter]))).json()["response"]["players"]
 
     for profile in players:
-
         if profile["communityvisibilitystate"] == 3:
             player_summaries.append(profile)
 
-    print("Out of {len(recent_players_id_list)} profiles, "
-          + (len(recent_players_id_list) - len(player_summaries))
-          + " are private and "
-          + len(player_summaries)
-          + " are public.")
+    print(
+        "Gathered "
+        + str(len(recent_players_id_list))
+        + " profiles, "
+        + str((len(recent_players_id_list) - len(player_summaries)))
+        + " are private and "
+        + str(len(player_summaries))
+        + " are public.\n"
+        + "Private profiles are discarded.\n"
+    )
 
     for profile in player_summaries:
 

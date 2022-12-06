@@ -126,7 +126,4 @@ def ViewPlayer(player):
     PlayerViewer(player)
 
 
-for player in player_list:
-    add_player(player)
-
 root_main.mainloop()
