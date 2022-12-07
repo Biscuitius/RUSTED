@@ -83,66 +83,59 @@ def update_players(players):
 
     for player in players.values():
 
-        if len(player.stats) > 0:
-
-            cur.execute(
-                """
-                REPLACE INTO Stats
-                VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)
-                """,
-                (
-                    player.steamid,
-                    player.name,
-                    player.stats["Metal Ore Harvested"],
-                    player.stats["Stone Harvested"],
-                    player.stats["Wood Harvested"],
-                    player.stats["Scrap Acquired"],
-                    player.stats["Cloth Harvested"],
-                    player.stats["Lowgrade Acquired"],
-                    player.stats["Leather Harvested"],
-                    player.stats["Barrels Broken"],
-                    player.stats["Animals Killed"],
-                    player.stats["Players Killed"],
-                    player.stats["Headshots Hit"],
-                    player.stats["Bullets Fired"],
-                    player.stats["Bullets Hit"],
-                    player.stats["Deaths"],
-                    player.stats["Rockets Fired"],
-                    player.stats["Grenades Thrown"],
-                    player.stats["Arrows Shot"],
-                    player.stats["Arrows Hit"],
-                    player.stats["Shotguns Fired"],
-                    player.stats["Wounded"],
-                    player.stats["Been Picked Up"],
-                    player.stats["Picked up Other"],
-                    player.stats["Suicides"],
-                    player.stats["Builds Placed"],
-                    player.stats["Builds Upgraded"],
-                    player.stats["Time Cold"],
-                    player.stats["Time Hot"],
-                    player.stats["Time on Roads"],
-                    player.stats["Distance on Horses"],
-                    player.stats["Blueprints Learnt"],
-                    player.stats["Times Waved"],
-                    player.stats["Food Eaten"],
-                    player.stats["Water Drunk"],
-                    player.stats["Time Speaking (s)"],
-                    player.stats["Notes Played"],
-                    player.stats["Scientists Killed"],
-                    player.stats["Deaths by AI"],
-                    player.stats["Helipad Landings"],
-                    player.stats["Cargo Bridge Visits"],
-                    player.stats["Deaths by Animals"],
-                    player.avatarmedium,
-                    player.avatarsmall,
-                    player.avatarbig
-                )
+        cur.execute(
+            """
+            REPLACE INTO Stats
+            VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)
+            """,
+            (
+                player.steamid,
+                player.name,
+                player.stats["Metal Ore Harvested"],
+                player.stats["Stone Harvested"],
+                player.stats["Wood Harvested"],
+                player.stats["Scrap Acquired"],
+                player.stats["Cloth Harvested"],
+                player.stats["Lowgrade Acquired"],
+                player.stats["Leather Harvested"],
+                player.stats["Barrels Broken"],
+                player.stats["Animals Killed"],
+                player.stats["Players Killed"],
+                player.stats["Headshots Hit"],
+                player.stats["Bullets Fired"],
+                player.stats["Bullets Hit"],
+                player.stats["Deaths"],
+                player.stats["Rockets Fired"],
+                player.stats["Grenades Thrown"],
+                player.stats["Arrows Shot"],
+                player.stats["Arrows Hit"],
+                player.stats["Shotguns Fired"],
+                player.stats["Wounded"],
+                player.stats["Been Picked Up"],
+                player.stats["Picked up Other"],
+                player.stats["Suicides"],
+                player.stats["Builds Placed"],
+                player.stats["Builds Upgraded"],
+                player.stats["Time Cold"],
+                player.stats["Time Hot"],
+                player.stats["Time on Roads"],
+                player.stats["Distance on Horses"],
+                player.stats["Blueprints Learnt"],
+                player.stats["Times Waved"],
+                player.stats["Food Eaten"],
+                player.stats["Water Drunk"],
+                player.stats["Time Speaking (s)"],
+                player.stats["Notes Played"],
+                player.stats["Scientists Killed"],
+                player.stats["Deaths by AI"],
+                player.stats["Helipad Landings"],
+                player.stats["Cargo Bridge Visits"],
+                player.stats["Deaths by Animals"],
+                player.avatarmedium,
+                player.avatarsmall,
+                player.avatarbig
             )
-        else:
-            print(
-                "\n\n\nSomething went wrong with player "
-                + player.name
-            )
+        )
 
     db.commit()
 

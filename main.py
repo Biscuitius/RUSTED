@@ -28,12 +28,22 @@ def update_player_stats(players, steam_api_key):
     for player in players.values():
         player_pop_list.extend(player.update_stats(steam_api_key))
 
+    print(
+        str(len(player_pop_list))
+        + "profiles have hidden stats and were discarded."
+    )
+
     for player in player_pop_list:
         players.pop(player, None)
 
     print(
-        "Finished updating player stats\n (took "
+        "Finished updating player stats (took "
         + str((datetime.now() - start_time)) + ").\n"
+    )
+
+    print(
+        str(len(players))
+        + "profiles have hidden stats and were discarded."
     )
 
     db.update_players(players)
