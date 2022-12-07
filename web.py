@@ -7,7 +7,7 @@ from steam import webauth
 
 
 def login(username, password):
-    print("Logging in...")
+    print("Connecting to Steam website...")
     user = webauth.WebAuth(username)
     session = user.cli_login(password)
     print("\nSuccessfully logged in.\n")
