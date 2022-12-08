@@ -140,6 +140,6 @@ def update_players(players):
     db.commit()
 
     print(
-        "Finished updating database\n (took "
+        "Finished updating database (took "
         + str((datetime.now() - start_time)) + ").\n"
     )
