@@ -18,41 +18,40 @@ def gather_players(user, session):
     return players
 
 
-def update_player_stats(players, steam_api_key):
+def discard_privates(players):
 
-    print("Updating player stats...")
-    start_time = datetime.now()
+    print("Discarding private profiles...")
 
-    player_pop_list = []
+    pop_list = []
 
     for player in players.values():
-        player_pop_list.extend(player.update_stats(steam_api_key))
+        if len(player.stats) == 0:
+            pop_list.append(player.steamid)
+
+    for player in pop_list:
+        players.pop(player)
 
     print(
-        str(len(player_pop_list))
-        + "profiles have hidden stats and were discarded."
+        str(len(pop_list))
+        + " profiles have hidden stats and were discarded.\n"
     )
 
-    for player in player_pop_list:
-        players.pop(player, None)
+
+def update_players(players, steam_api_key):
+
+    print("Updating player stats...\n")
+    start_time = datetime.now()
+
+    web.update_player_stats(players, steam_api_key)
+
+    discard_privates(players)
+
+    db.update_players(players)
 
     print(
         "Finished updating player stats (took "
         + str((datetime.now() - start_time)) + ").\n"
     )
-
-    print(
-        str(len(players))
-        + "profiles have hidden stats and were discarded."
-    )
-
-    db.update_players(players)
-
-
-def update_player(steamid):
-    update_player_stats(
-        {"Player": players[steamid]},
-        cfg.steam_api_key)
 
 
 web_auth = web.login(cfg.username, cfg.password)
@@ -64,4 +63,4 @@ db.init_database()
 players = gather_players(user, session)
 # players = eg.players
 
-update_player_stats(players, cfg.steam_api_key)
+update_players(players, cfg.steam_api_key)
