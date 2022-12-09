@@ -32,16 +32,17 @@ Now, looking up a player's Rust stats has always been available via API calls ma
 | Wood Harvested      | Time Spent Cold         | Bullets Fired
 | Scrap Acquired      | Time Spent Hot          | Bullets Hit
 | Cloth Harvested     | Time Spent on Roads     | Deaths
-| Lowgrade Acquired   | Distance on Horses      | Rockets Fired
-| Leather Harvested   | Blueprints Learnt       | Grenades Thrown
-| Barrels Broken      | Food Eaten              | Arrows Shot
-| Animals Killed      | Water Drunk             | Arrows Hit
+| Lowgrade Acquired   | Distance on Horses      | Accuracy
+| Leather Harvested   | Blueprints Learnt       | K/D Ratio
+| Barrels Broken      | Food Eaten              | Rockets Fired
+| Animals Killed      | Water Drunk             | Grenades Thrown
 | Scientists Killed   | Times Waved             | Shotguns Fired
 | Cargo Bridge Visits | Time Spent Speaking (s) | Wounded
 | Helipad Landings    | Instrument Notes Played | Been Picked Up
 |                     | Deaths by AI            | Picked up Other
 |                     | Deaths by Animals       | Suicides
-
+|                     |                         | Arrows Shot
+|                     |                         | Arrows Hit
 
 ### What can I do with it?
 
