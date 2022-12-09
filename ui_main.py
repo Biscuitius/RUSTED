@@ -5,7 +5,7 @@ from PIL import Image, ImageTk
 from ui_styles import colour, font
 
 root_main = tk.Tk()
-root_main.title("RATS.EXE")
+root_main.title("RUSTED.EXE")
 root_main.config(bg=colour.bg_low, padx=10, pady=10)
 root_main.resizable(False, False)
 
@@ -26,7 +26,7 @@ root_main.grid_rowconfigure(10, weight=1)
 tk.Label(
     root_main,
     bg=colour.bg_mid,
-    text="  Rust Advanced Tracking System  ",
+    text="  -= R.U.S.T.E.D =-  ",
     font=(font.medium, 20),
     fg=colour.txt_title
 ).grid(
