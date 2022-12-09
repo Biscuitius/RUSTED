@@ -1,4 +1,5 @@
-# R.U.S.T.E.D - Rust User Statistics Tracker & Evaluation Database
+# R.U.S.T.E.D
+# Rust User Statistics Tracker & Evaluation Database
 #### Track player statistics on Rust by utilising web auth, webscraping and Steam APIs
 
 ----
