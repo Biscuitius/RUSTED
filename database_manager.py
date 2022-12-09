@@ -28,6 +28,8 @@ def init_database():
             "Bullets Fired" varchar(15),
             "Bullets Hit" varchar(15),
             "Deaths" varchar(15),
+            "Accuracy" varchar(15),
+            "K/D Ratio" varchar(15),
             "Rockets Fired" varchar(15),
             "Grenades Thrown" varchar(15),
             "Arrows Shot" varchar(15),
@@ -86,7 +88,7 @@ def update_players(players):
         cur.execute(
             """
             REPLACE INTO Stats
-            VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)
+            VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)
             """,
             (
                 player.steamid,
@@ -105,6 +107,8 @@ def update_players(players):
                 player.stats["Bullets Fired"],
                 player.stats["Bullets Hit"],
                 player.stats["Deaths"],
+                player.stats["Accuracy"],
+                player.stats["K/D Ratio"],
                 player.stats["Rockets Fired"],
                 player.stats["Grenades Thrown"],
                 player.stats["Arrows Shot"],
