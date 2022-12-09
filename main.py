@@ -2,7 +2,6 @@ import os
 from datetime import datetime
 import config as cfg
 import web
-import examples as eg
 import database_manager as db
 
 start_time = datetime.now()

@@ -1,3 +1,3 @@
-steam_api_key = "***REMOVED***"
-username = "***REMOVED***"
-password = "***REMOVED***"
+steam_api_key = ""
+username = ""
+password = ""
