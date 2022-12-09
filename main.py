@@ -7,7 +7,7 @@ import database_manager as db
 
 start_time = datetime.now()
 
-os.chdir("OneDrive\\Coding\\Rust-Advanced-Tracking-System")
+os.chdir("OneDrive\\Coding\\RUSTED")
 
 
 def gather_players(user, session):
