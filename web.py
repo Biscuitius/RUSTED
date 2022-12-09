@@ -20,7 +20,7 @@ def scan_recent_players(user, session, steam_api_key):
                        "/friends/coplay?ajax=1").text
     soup = BeautifulSoup(page, "html.parser")
 
-    recent_players_id_list = []
+    recent_players_id_list = [user.steam_id]
     url_list = []
     recent_players = {}
 

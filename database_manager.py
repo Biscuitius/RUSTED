@@ -59,8 +59,6 @@ def init_database():
             "Avatar (32x32)" varchar(120),
             "Avatar (64x64)" varchar(120),
             "Avatar (184x184)" varchar(120)
-
-
         )""")
 
     db.commit()
