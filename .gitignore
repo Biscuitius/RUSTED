@@ -154,4 +154,5 @@ cython_debug/
 *.docx
 test.py
 Database.db
-config.py
+Database.db
+database
