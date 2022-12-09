@@ -1,9 +1,11 @@
-import database_manager as db
-import examples as eg
-import web
-import config as cfg
-from datetime import datetime
 import os
+from datetime import datetime
+import config as cfg
+import web
+import examples as eg
+import database_manager as db
+
+start_time = datetime.now()
 
 os.chdir("OneDrive\\Coding\\Rust-Advanced-Tracking-System")
 
@@ -40,18 +42,12 @@ def discard_privates(players):
 def update_players(players, steam_api_key):
 
     print("Updating player stats...\n")
-    start_time = datetime.now()
 
     web.update_player_stats(players, steam_api_key)
-
     discard_privates(players)
-
     db.update_players(players)
 
-    print(
-        "Finished updating player stats (took "
-        + str((datetime.now() - start_time)) + ").\n"
-    )
+    print("Finished updating player stats.\n")
 
 
 web_auth = web.login(cfg.username, cfg.password)
@@ -64,3 +60,8 @@ players = gather_players(user, session)
 # players = eg.players
 
 update_players(players, cfg.steam_api_key)
+
+print(
+    "App initialisation finished (took "
+    + str((datetime.now() - start_time)) + ").\n"
+)
