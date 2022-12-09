@@ -149,7 +149,7 @@ def update_player_stats(players, steam_api_key):
             tasks = get_tasks(players, session, steam_api_key)
             responses = await asyncio.gather(*tasks, return_exceptions=True)
             for response in responses:
-                stat_responses.append(await response.json(content_type=None))
+                stat_responses.append(await response.json())
 
     asyncio.run(get_stats(players))
 
@@ -166,62 +166,62 @@ def update_player_stats(players, steam_api_key):
 
             try:
                 players[response["playerstats"]["steamID"]
-                        ].stats["Metal Ore Harvested"] = raw_stats["acquired_metal.ore"]
+                        ].stats["Metal Ore Harvested"] = int(raw_stats["acquired_metal.ore"])
             except KeyError:
                 players[response["playerstats"]["steamID"]
-                        ].stats["Metal Ore Harvested"] = "0"
+                        ].stats["Metal Ore Harvested"] = 0
 
             try:
                 players[response["playerstats"]["steamID"]
-                        ].stats["Stone Harvested"] = raw_stats["harvested_stones"]
+                        ].stats["Stone Harvested"] = int(raw_stats["harvested_stones"])
             except KeyError:
                 players[response["playerstats"]["steamID"]
-                        ].stats["Stone Harvested"] = "0"
+                        ].stats["Stone Harvested"] = 0
 
             try:
                 players[response["playerstats"]["steamID"]
-                        ].stats["Wood Harvested"] = raw_stats["harvested_wood"]
+                        ].stats["Wood Harvested"] = int(raw_stats["harvested_wood"])
             except KeyError:
                 players[response["playerstats"]["steamID"]
-                        ].stats["Wood Harvested"] = "0"
+                        ].stats["Wood Harvested"] = 0
 
             try:
                 players[response["playerstats"]["steamID"]
-                        ].stats["Scrap Acquired"] = raw_stats["acquired_scrap"]
+                        ].stats["Scrap Acquired"] = int(raw_stats["acquired_scrap"])
             except KeyError:
                 players[response["playerstats"]["steamID"]
-                        ].stats["Scrap Acquired"] = "0"
+                        ].stats["Scrap Acquired"] = 0
 
             try:
                 players[response["playerstats"]["steamID"]
-                        ].stats["Cloth Harvested"] = raw_stats["harvested_cloth"]
+                        ].stats["Cloth Harvested"] = int(raw_stats["harvested_cloth"])
             except KeyError:
                 players[response["playerstats"]["steamID"]
-                        ].stats["Cloth Harvested"] = "0"
+                        ].stats["Cloth Harvested"] = 0
 
             try:
                 players[response["playerstats"]["steamID"]
-                        ].stats["Lowgrade Acquired"] = raw_stats["acquired_lowgradefuel"]
+                        ].stats["Lowgrade Acquired"] = int(raw_stats["acquired_lowgradefuel"])
             except KeyError:
                 players[response["playerstats"]["steamID"]
-                        ].stats["Lowgrade Acquired"] = "0"
+                        ].stats["Lowgrade Acquired"] = 0
 
             try:
                 players[response["playerstats"]["steamID"]
-                        ].stats["Leather Harvested"] = raw_stats["harvested_leather"]
+                        ].stats["Leather Harvested"] = int(raw_stats["harvested_leather"])
             except KeyError:
                 players[response["playerstats"]["steamID"]
-                        ].stats["Leather Harvested"] = "0"
+                        ].stats["Leather Harvested"] = 0
 
             try:
                 players[response["playerstats"]["steamID"]
-                        ].stats["Barrels Broken"] = raw_stats["destroyed_barrels"]
+                        ].stats["Barrels Broken"] = int(raw_stats["destroyed_barrels"])
             except KeyError:
                 players[response["playerstats"]["steamID"]
-                        ].stats["Barrels Broken"] = "0"
+                        ].stats["Barrels Broken"] = 0
 
             try:
-                players[response["playerstats"]["steamID"]].stats["Animals Killed"] = str(
+                players[response["playerstats"]["steamID"]].stats["Animals Killed"] = (
                     + int(raw_stats["kill_bear"])
                     + int(raw_stats["kill_boar"])
                     + int(raw_stats["kill_stag"])
@@ -229,31 +229,31 @@ def update_player_stats(players, steam_api_key):
                     + int(raw_stats["kill_wolf"]))
             except KeyError:
                 players[response["playerstats"]["steamID"]
-                        ].stats["Animals Killed"] = "0"
+                        ].stats["Animals Killed"] = 0
 
             try:
                 players[response["playerstats"]["steamID"]
-                        ].stats["Players Killed"] = raw_stats["kill_player"]
+                        ].stats["Players Killed"] = int(raw_stats["kill_player"])
             except KeyError:
                 players[response["playerstats"]["steamID"]
-                        ].stats["Players Killed"] = "0"
+                        ].stats["Players Killed"] = 0
 
             try:
                 players[response["playerstats"]["steamID"]
-                        ].stats["Headshots Hit"] = raw_stats["headshot"]
+                        ].stats["Headshots Hit"] = int(raw_stats["headshot"])
             except KeyError:
                 players[response["playerstats"]["steamID"]
-                        ].stats["Headshots Hit"] = "0"
+                        ].stats["Headshots Hit"] = 0
 
             try:
-                players[response["playerstats"]["steamID"]
-                        ].stats["Bullets Fired"] = raw_stats["bullet_fired"]
+                players[response["playerstats"]["steamID"]].stats["Bullets Fired"] = int(
+                    raw_stats["bullet_fired"])
             except KeyError:
                 players[response["playerstats"]["steamID"]
-                        ].stats["Bullets Fired"] = "0"
+                        ].stats["Bullets Fired"] = 0
 
             try:
-                players[response["playerstats"]["steamID"]].stats["Bullets Hit"] = str(
+                players[response["playerstats"]["steamID"]].stats["Bullets Hit"] = (
                     + int(raw_stats["bullet_hit_player"])
                     + int(raw_stats["bullet_hit_boar"])
                     + int(raw_stats["bullet_hit_bear"])
@@ -262,38 +262,39 @@ def update_player_stats(players, steam_api_key):
                     + int(raw_stats["bullet_hit_entity"]))
             except KeyError:
                 players[response["playerstats"]["steamID"]
-                        ].stats["Bullets Hit"] = "0"
+                        ].stats["Bullets Hit"] = 0
 
             try:
                 players[response["playerstats"]["steamID"]
-                        ].stats["Deaths"] = raw_stats["deaths"]
+                        ].stats["Deaths"] = int(raw_stats["deaths"])
             except KeyError:
                 players[response["playerstats"]
-                        ["steamID"]].stats["Deaths"] = "0"
+                        ["steamID"]].stats["Deaths"] = 0
 
             try:
                 players[response["playerstats"]["steamID"]
-                        ].stats["Rockets Fired"] = raw_stats["rocket_fired"]
+                        ].stats["Rockets Fired"] = int(raw_stats["rocket_fired"])
             except KeyError:
                 players[response["playerstats"]["steamID"]
-                        ].stats["Rockets Fired"] = "0"
+                        ].stats["Rockets Fired"] = 0
 
             try:
                 players[response["playerstats"]["steamID"]
-                        ].stats["Grenades Thrown"] = raw_stats["grenades_thrown"]
+                        ].stats["Grenades Thrown"] = int(raw_stats["grenades_thrown"])
             except KeyError:
                 players[response["playerstats"]["steamID"]
-                        ].stats["Grenades Thrown"] = "0"
+                        ].stats["Grenades Thrown"] = 0
 
             try:
                 players[response["playerstats"]["steamID"]
-                        ].stats["Arrows Shot"] = raw_stats["arrows_shot"]
+                        ].stats["Arrows Shot"] = int(raw_stats["arrows_shot"])
             except KeyError:
                 players[response["playerstats"]["steamID"]
-                        ].stats["Arrows Shot"] = "0"
+                        ].stats["Arrows Shot"] = 0
 
             try:
-                players[response["playerstats"]["steamID"]].stats["Arrows Hit"] = str(
+                players[response["playerstats"]["steamID"]
+                        ].stats["Arrows Hit"] = (
                     + int(raw_stats["arrow_hit_player"])
                     + int(raw_stats["arrow_hit_boar"])
                     + int(raw_stats["arrow_hit_bear"])
@@ -303,160 +304,161 @@ def update_player_stats(players, steam_api_key):
                     + int(raw_stats["arrow_hit_entity"]))
             except KeyError:
                 players[response["playerstats"]
-                        ["steamID"]].stats["Arrows Hit"] = "0"
+                        ["steamID"]].stats["Arrows Hit"] = 0
 
             try:
                 players[response["playerstats"]["steamID"]
-                        ].stats["Shotguns Fired"] = raw_stats["shotgun_fired"]
+                        ].stats["Shotguns Fired"] = int(raw_stats["shotgun_fired"])
             except KeyError:
                 players[response["playerstats"]["steamID"]
-                        ].stats["Shotguns Fired"] = "0"
+                        ].stats["Shotguns Fired"] = 0
 
             try:
                 players[response["playerstats"]["steamID"]
-                        ].stats["Wounded"] = raw_stats["wounded"]
-            except KeyError:
-                players[response["playerstats"]
-                        ["steamID"]].stats["Wounded"] = "0"
-
-            try:
-                players[response["playerstats"]["steamID"]
-                        ].stats["Been Picked Up"] = raw_stats["wounded_assisted"]
-            except KeyError:
-                players[response["playerstats"]["steamID"]
-                        ].stats["Been Picked Up"] = "0"
-
-            try:
-                players[response["playerstats"]["steamID"]
-                        ].stats["Picked up Other"] = raw_stats["wounded_healed"]
-            except KeyError:
-                players[response["playerstats"]["steamID"]
-                        ].stats["Picked up Other"] = "0"
-
-            try:
-                players[response["playerstats"]["steamID"]
-                        ].stats["Suicides"] = raw_stats["death_suicide"]
+                        ].stats["Wounded"] = int(raw_stats["wounded"])
             except KeyError:
                 players[response["playerstats"]
-                        ["steamID"]].stats["Suicides"] = "0"
+                        ["steamID"]].stats["Wounded"] = 0
 
             try:
                 players[response["playerstats"]["steamID"]
-                        ].stats["Builds Placed"] = raw_stats["placed_blocks"]
+                        ].stats["Been Picked Up"] = int(raw_stats["wounded_assisted"])
             except KeyError:
                 players[response["playerstats"]["steamID"]
-                        ].stats["Builds Placed"] = "0"
+                        ].stats["Been Picked Up"] = 0
 
             try:
                 players[response["playerstats"]["steamID"]
-                        ].stats["Builds Upgraded"] = raw_stats["upgraded_blocks"]
+                        ].stats["Picked up Other"] = int(raw_stats["wounded_healed"])
             except KeyError:
                 players[response["playerstats"]["steamID"]
-                        ].stats["Builds Upgraded"] = "0"
+                        ].stats["Picked up Other"] = 0
 
             try:
                 players[response["playerstats"]["steamID"]
-                        ].stats["Time Cold"] = raw_stats["cold_exposure_duration"]
-            except KeyError:
-                players[response["playerstats"]
-                        ["steamID"]].stats["Time Cold"] = "0"
-
-            try:
-                players[response["playerstats"]["steamID"]
-                        ].stats["Time Hot"] = raw_stats["hot_exposure_duration"]
+                        ].stats["Suicides"] = int(raw_stats["death_suicide"])
             except KeyError:
                 players[response["playerstats"]
-                        ["steamID"]].stats["Time Hot"] = "0"
+                        ["steamID"]].stats["Suicides"] = 0
 
             try:
                 players[response["playerstats"]["steamID"]
-                        ].stats["Time on Roads"] = raw_stats["topology_road_duration"]
+                        ].stats["Builds Placed"] = int(raw_stats["placed_blocks"])
             except KeyError:
                 players[response["playerstats"]["steamID"]
-                        ].stats["Time on Roads"] = "0"
+                        ].stats["Builds Placed"] = 0
 
             try:
                 players[response["playerstats"]["steamID"]
-                        ].stats["Distance on Horses"] = raw_stats["horse_distance_ridden_km"]
+                        ].stats["Builds Upgraded"] = int(raw_stats["upgraded_blocks"])
             except KeyError:
                 players[response["playerstats"]["steamID"]
-                        ].stats["Distance on Horses"] = "0"
+                        ].stats["Builds Upgraded"] = 0
 
             try:
                 players[response["playerstats"]["steamID"]
-                        ].stats["Blueprints Learnt"] = raw_stats["blueprint_studied"]
-            except KeyError:
-                players[response["playerstats"]["steamID"]
-                        ].stats["Blueprints Learnt"] = "0"
-
-            try:
-                players[response["playerstats"]["steamID"]
-                        ].stats["Times Waved"] = raw_stats["gesture_wave_count"]
-            except KeyError:
-                players[response["playerstats"]["steamID"]
-                        ].stats["Times Waved"] = "0"
-
-            try:
-                players[response["playerstats"]["steamID"]
-                        ].stats["Food Eaten"] = raw_stats["calories_consumed"]
+                        ].stats["Time Cold"] = int(raw_stats["cold_exposure_duration"])
             except KeyError:
                 players[response["playerstats"]
-                        ["steamID"]].stats["Food Eaten"] = "0"
+                        ["steamID"]].stats["Time Cold"] = 0
 
             try:
                 players[response["playerstats"]["steamID"]
-                        ].stats["Water Drunk"] = raw_stats["water_consumed"]
+                        ].stats["Time Hot"] = int(raw_stats["hot_exposure_duration"])
+            except KeyError:
+                players[response["playerstats"]
+                        ["steamID"]].stats["Time Hot"] = 0
+
+            try:
+                players[response["playerstats"]["steamID"]
+                        ].stats["Time on Roads"] = int(raw_stats["topology_road_duration"])
             except KeyError:
                 players[response["playerstats"]["steamID"]
-                        ].stats["Water Drunk"] = "0"
+                        ].stats["Time on Roads"] = 0
 
             try:
                 players[response["playerstats"]["steamID"]
-                        ].stats["Time Speaking (s)"] = raw_stats["seconds_speaking"]
+                        ].stats["Distance on Horses"] = int(raw_stats["horse_distance_ridden_km"])
             except KeyError:
                 players[response["playerstats"]["steamID"]
-                        ].stats["Time Speaking (s)"] = "0"
+                        ].stats["Distance on Horses"] = 0
 
             try:
-                players[response["playerstats"]["steamID"]].stats["Notes Played"] = str(
+                players[response["playerstats"]["steamID"]
+                        ].stats["Blueprints Learnt"] = int(raw_stats["blueprint_studied"])
+            except KeyError:
+                players[response["playerstats"]["steamID"]
+                        ].stats["Blueprints Learnt"] = 0
+
+            try:
+                players[response["playerstats"]["steamID"]
+                        ].stats["Times Waved"] = int(raw_stats["gesture_wave_count"])
+            except KeyError:
+                players[response["playerstats"]["steamID"]
+                        ].stats["Times Waved"] = 0
+
+            try:
+                players[response["playerstats"]["steamID"]
+                        ].stats["Food Eaten"] = int(raw_stats["calories_consumed"])
+            except KeyError:
+                players[response["playerstats"]
+                        ["steamID"]].stats["Food Eaten"] = 0
+
+            try:
+                players[response["playerstats"]["steamID"]
+                        ].stats["Water Drunk"] = int(raw_stats["water_consumed"])
+            except KeyError:
+                players[response["playerstats"]["steamID"]
+                        ].stats["Water Drunk"] = 0
+
+            try:
+                players[response["playerstats"]["steamID"]
+                        ].stats["Time Speaking (s)"] = int(raw_stats["seconds_speaking"])
+            except KeyError:
+                players[response["playerstats"]["steamID"]
+                        ].stats["Time Speaking (s)"] = 0
+
+            try:
+                players[response["playerstats"]["steamID"]].stats["Notes Played"] = (
                     + int(raw_stats["InstrumentNotesPlayed"])
                     + int(raw_stats["InstrumentNotesPlayedBinds"]))
             except KeyError:
                 players[response["playerstats"]["steamID"]
-                        ].stats["Notes Played"] = "0"
+                        ].stats["Notes Played"] = 0
 
             try:
                 players[response["playerstats"]["steamID"]
-                        ].stats["Scientists Killed"] = raw_stats["kill_scientist"]
+                        ].stats["Scientists Killed"] = int(raw_stats["kill_scientist"])
             except KeyError:
                 players[response["playerstats"]["steamID"]
-                        ].stats["Scientists Killed"] = "0"
+                        ].stats["Scientists Killed"] = 0
 
             try:
                 players[response["playerstats"]["steamID"]
-                        ].stats["Deaths by AI"] = raw_stats["death_entity"]
+                        ].stats["Deaths by AI"] = int(raw_stats["death_entity"])
             except KeyError:
                 players[response["playerstats"]["steamID"]
-                        ].stats["Deaths by AI"] = "0"
+                        ].stats["Deaths by AI"] = 0
 
             try:
                 players[response["playerstats"]["steamID"]
-                        ].stats["Helipad Landings"] = raw_stats["helipad_landings"]
+                        ].stats["Helipad Landings"] = int(raw_stats["helipad_landings"])
             except KeyError:
                 players[response["playerstats"]["steamID"]
-                        ].stats["Helipad Landings"] = "0"
+                        ].stats["Helipad Landings"] = 0
 
             try:
                 players[response["playerstats"]["steamID"]
-                        ].stats["Cargo Bridge Visits"] = raw_stats["cargoship_bridge_visits"]
+                        ].stats["Cargo Bridge Visits"] = int(raw_stats["cargoship_bridge_visits"])
             except KeyError:
                 players[response["playerstats"]["steamID"]
-                        ].stats["Cargo Bridge Visits"] = "0"
+                        ].stats["Cargo Bridge Visits"] = 0
 
             try:
-                players[response["playerstats"]["steamID"]].stats["Deaths by Animals"] = str(
-                    + int(raw_stats["death_wolf"])
-                    + int(raw_stats["death_bear"]))
+                players[response["playerstats"]["steamID"]
+                        ].stats["Deaths by Animals"] = (
+                            + int(raw_stats["death_wolf"])
+                            + int(raw_stats["death_bear"]))
             except KeyError:
                 players[response["playerstats"]["steamID"]
-                        ].stats["Deaths by Animals"] = "0"
+                        ].stats["Deaths by Animals"] = 0
