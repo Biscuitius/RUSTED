@@ -156,3 +156,5 @@ test.py
 Database.db
 Database.db
 database
+git-filter-repo
+redact.txt
