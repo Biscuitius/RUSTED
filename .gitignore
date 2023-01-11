@@ -159,3 +159,6 @@ database
 git-filter-repo
 redact.txt
 RUSTED.zip
+bfg.jar
+badwords.txt
+examples.py
