@@ -8,7 +8,7 @@
 A warm hello to you, friend. This is my first ever GitHub project - my first project ever uploaded to the internet, in fact.
 I'm using this project as a means to explore the programming world and learn new concepts - so constructive criticism is much appreciated :)
 
-The app is built in Python, using tkinter for the GUI and a mix of web scraping, steam web authentication and API get requests for retrieving all the information from the web. All information gathered is publicly accessible and cannot be used to determine a person's real-life identity without their consent.
+The app is built in Python, using a mix of web scraping, steam web authentication and API requests for retrieving all the information from the web. All information gathered is publicly accessible and cannot be used to determine a person's real-life identity without their consent.
 
 
 ## Feature List
@@ -22,7 +22,7 @@ Well, the app works by trawling through your Recent Players & Current Players li
 * Avatar
 
 ### Trackable Stats
-Now, looking up a player's Rust stats has always been available via API calls made by discord bots and such, but what really makes RATS special is that we can track all these stats, filter them within a timeframe, put them in a leaderboard, and update them regularly. This opens up entire gameplay strategies that were previously impossible or based on guesswork.
+Now, looking up a player's Rust stats has always been available via API calls made by discord bots and such, but what really makes RUSTED special is that we can track all these stats, filter them within a timeframe, put them in a leaderboard, and update them regularly. This opens up entire gameplay strategies that were previously impossible or based on guesswork.
 
 
 | Resource Stats      | Base/Roleplay Stats     | PvP Stats
@@ -46,7 +46,7 @@ Now, looking up a player's Rust stats has always been available via API calls ma
 
 ### What can I do with it?
 
-#### Well, allow me to invent a completely hypothetical and self-gratifying story in which we manage to find an ideal raid target with the precise loot we want, and even identify where he lives - just by using RATS (yes, I chose that acronym on purpose). 
+#### Well, allow me to invent a completely hypothetical and self-gratifying story in which we manage to find an ideal raid target with the precise loot we want, and even identify where he lives - just by using RUSTED. 
 
 Imagine this scenario: You're looking for a fun online raid target, you've got the explosives, but your team is demotivated and desperately in need of a big win. What's worse, your huge metal base hasn't got any upkeep left and nobody wants to farm for it. So, you open up RATS and check out the leaderboard. Sort by ***Metal Ore Harvested*** and filter to players with the lowest K/D ratio. A perfect candidate - let's call him [Sal](https://tinyurl.com/2e95md6d). Now, farmer [Sal](https://tinyurl.com/2e95md6d)'s stats sure do smell like free loot, but where does he live? You haven't seen him all wipe. So, you take a look at [Sal](https://tinyurl.com/2e95md6d)'s personal stats, and see that his ***Time Spent Hot*** is notably high, as are his ***Food Eaten** and ***Water Drunk*** stats. His **Cloth Harvested*** stat is unusually low this wipe, though. So, where on the map is very hot, with a lot of food and water, but no cloth? You take a look at the map, and behold - a hot desert where no cloth grows, but within, a river where food and water is plentiful. This must be where [Sal](https://tinyurl.com/2e95md6d) lives.
 
